@@ -1,0 +1,15 @@
+{
+  "name": "express-js",
+  "version": "1.0.0",
+  "description": "express js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "node --watch --env-file=.env server"
+  },
+  "author": "shahzad akram",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
