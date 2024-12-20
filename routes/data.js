@@ -85,7 +85,10 @@ if(!newPost.name){
 //update Post
 
 router.put('/',(req , res)=>{
-    
+    console.log("from put req.body =",req.body);
+
+    res.status(201).json(data)
 })
 
 export default router
+
