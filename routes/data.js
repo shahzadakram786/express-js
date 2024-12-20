@@ -20,14 +20,6 @@ let data = [
 
 
 
-
-
-
-
-
-
-
-
 router.get('/', (req, res)=>{
     // console.log(req.query);
     const limit = parseInt(req.query.limit);
@@ -69,8 +61,31 @@ router.get('/:id',(req , res)=>{
 
 
 
+// create new post   post method i am working on 
 
+router.post('/',(req, res)=> {
+   
+console.log("req.body =", req.body);
 
+const newPost = {
+    id: data.length + 1,
+    name: req.body.title
+}
 
+console.log(req.body.title)
+
+if(!newPost.name){
+    res.status(400).json({message:"please include a title"})
+}else{
+    data.push(newPost)
+}
+    res.status(201).json(data)
+});
+
+//update Post
+
+router.put('/',(req , res)=>{
+    
+})
 
 export default router
