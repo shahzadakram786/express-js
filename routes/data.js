@@ -1,4 +1,4 @@
-import express from "express"; 
+import express, { json } from "express"; 
 const router = express.Router()
 
 
@@ -65,7 +65,7 @@ router.get('/:id',(req , res)=>{
 
 router.post('/',(req, res)=> {
    
-console.log("req.body =", req.body);
+console.log("Post req.body =", req.body);
 
 const newPost = {
     id: data.length + 1,
@@ -82,10 +82,46 @@ if(!newPost.name){
     res.status(201).json(data)
 });
 
+
 //update Post
 
 router.put('/',(req , res)=>{
-    console.log("from put req.body =",req.body);
+
+
+    console.log("from put req.body =",req.body.id);
+
+    let paredBody = req.body
+    console.log("parsedBOyd  = ",paredBody)
+
+    const id = parseInt(req.body.id);
+    const name = req.body.name;
+
+    console.log("req.body.name = ",req.body.title)
+    
+    const IdData = data.find((data)=> data.id === id);
+
+    if(!IdData){
+        console.log(`your ${IdData} user not found`)
+    }else
+    {
+        console.log("data where id meets = ",IdData)
+        // IdData.name = name
+    }
+    
+    // console.log(IdData)
+    // let id = req.body.id 
+    // const foundUser =  
+
+    // const updatePost = {
+    //     id: data.
+    // }
+
+    // if(){
+
+    // }
+
+
+
 
     res.status(201).json(data)
 })
