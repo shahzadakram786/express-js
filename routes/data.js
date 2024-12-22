@@ -90,11 +90,15 @@ router.put('/',(req , res)=>{
 
     console.log("from put req.body =",req.body.id);
 
-    let paredBody = req.body
+    let paredBody = req.body;
+
+    let {id , title} = paredBody
+
+
     console.log("parsedBOyd  = ",paredBody)
 
-    const id = parseInt(req.body.id);
-    const name = req.body.name;
+    // const id = parseInt(req.body.id);
+    // const name = req.body.name;
 
     console.log("req.body.name = ",req.body.title)
     
@@ -107,6 +111,16 @@ router.put('/',(req , res)=>{
         console.log("data where id meets = ",IdData)
         // IdData.name = name
     }
+
+
+
+    
+
+
+
+
+
+    
     
     // console.log(IdData)
     // let id = req.body.id 
