@@ -85,8 +85,7 @@ if(!newPost.name){
 
 //update Post
 
-router.put('/',(req , res)=>{
-
+router.put('/ ',(req , res)=>{
 
     console.log("from put req.body =",req.body.id);
 
@@ -114,35 +113,82 @@ router.put('/',(req , res)=>{
         
     }
 
-    // res.status(200).json(data)
+    res.status(201).json(data)
+})
 
 
 
+// update second method
+
+router.put('/:id',(req , res)=>{
+
+    let id = parseInt(req.params.id)
+
+    console.log("from put req.body =",req.body.id);
+
+    const IdData = data.find((data)=> data.id === id);
 
 
+    if(!IdData){
+        console.log()
+        res.status(404).json({message: `your ${IdData} user not found`})
+    }else
+    {
 
-
-
-
-    
-    
-    // console.log(IdData)
-    // let id = req.body.id 
-    // const foundUser =  
-
-    // const updatePost = {
-    //     id: data.
-    // }
-
-    // if(){
-
-    // }
-
-
-
+        IdData.name = req.body.name
+        console.log(data);
+        
+    }
 
     res.status(201).json(data)
 })
+
+
+
+
+
+// delete from array
+// router.delete('/', (req , res) => {
+
+//     let {id} = req.body;
+//     let IdData = data.find((data) => data.id === id );
+
+//     console.log("delete = ", IdData)
+
+//     // data = data.length--
+//     //  console.log(IdData.length--)
+
+//     // console.log()
+      
+//     //  res.status(200).json(data)
+// })
+
+// antoehre way using params 
+
+router.delete('/:id', (req , res) => {
+    
+    let id = parseInt(req.params.id)
+
+    let IdData = data.find((data) => data.id === id );
+
+
+    if(!IdData){
+
+        res.status(204).json({message: "user not found"})
+
+    }else
+    {
+   
+
+      data = data.filter((data)=> data.id !== id)
+      console.log(data)
+         
+
+    }
+       res.status(200).json(data)
+   
+})
+
 
 export default router
 
