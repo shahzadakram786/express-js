@@ -90,17 +90,14 @@ router.put('/',(req , res)=>{
 
     console.log("from put req.body =",req.body.id);
 
-    let paredBody = req.body;
+    let {id , name} = req.body;
 
-    let {id , title} = paredBody
-
-
-    console.log("parsedBOyd  = ",paredBody)
+    console.log("parsedBOyd  = ",name)
 
     // const id = parseInt(req.body.id);
     // const name = req.body.name;
 
-    console.log("req.body.name = ",req.body.title)
+    // console.log("req.body.name = ", name)
     
     const IdData = data.find((data)=> data.id === id);
 
@@ -108,9 +105,16 @@ router.put('/',(req , res)=>{
         console.log(`your ${IdData} user not found`)
     }else
     {
-        console.log("data where id meets = ",IdData)
-        // IdData.name = name
+        // console.log("data where id meets = ",IdData)
+        console.log("name", id,name)
+        
+        IdData.name = name
+
+        console.log(data);
+        
     }
+
+    // res.status(200).json(data)
 
 
 
