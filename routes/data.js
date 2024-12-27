@@ -61,6 +61,9 @@ router.get('/:id',(req , res)=>{
 
 
 
+
+
+
 // create new post   post method i am working on 
 
 router.post('/',(req, res)=> {
@@ -137,7 +140,7 @@ router.put('/:id',(req , res)=>{
 
         IdData.name = req.body.name
         console.log(data);
-        
+        console.log(data);
     }
 
     res.status(201).json(data)
