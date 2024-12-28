@@ -64,6 +64,8 @@ router.get('/:id',(req , res)=>{
 
 
 
+
+
 // create new post   post method i am working on 
 
 router.post('/',(req, res)=> {
