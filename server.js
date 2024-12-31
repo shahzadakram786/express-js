@@ -2,6 +2,9 @@ import express from 'express';
 import path from 'path';
 import data from './routes/data.js'
 import logger from './middleware/logger.js';
+import errorHandler from './middleware/error.js'
+import notFound from './middleware/notFound.js';
+
 const port = process.env.PORT || 8080;
 const app = express();
 
@@ -19,6 +22,13 @@ app.use(logger)
 app.use('/api/post' , data)
 
 
+
+
+//  Error Handler
+
+app.use(notFound)
+
+app.use(errorHandler)
 
 
 

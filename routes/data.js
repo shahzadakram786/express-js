@@ -39,14 +39,15 @@ router.get('/',(req, res)=>{
 
 
 
-router.get('/:id',(req , res)=>{
+router.get('/:id',(req , res , next)=>{
 
     const id = parseInt(req.params.id);
     const IdData = data.find((data)=> data.id === id);
 
     if(!IdData){
-       return res.status(404).json({message:`the data with the id:${id} was not found`});
-
+       const error =   new Error(`the user was not found`)
+       error.status = 404;
+       return next(error);
     }
 
         res.status(200).json(IdData);
@@ -71,7 +72,7 @@ router.get('/:id',(req , res)=>{
 
 // create new post   post method i am working on 
 
-router.post('/',(req, res)=> {
+router.post('/',(req, res , next)=> {
    
 console.log("Post req.body =", req.body);
 
@@ -83,7 +84,11 @@ const newPost = {
 console.log(req.body.title)
 
 if(!newPost.name){
-    res.status(400).json({message:"please include a title"})
+
+    const error =   new Error("please include the title")
+    error.status = 400;
+    return next(error);
+
 }else{
     data.push(newPost)
 }
@@ -109,7 +114,11 @@ router.put('/ ',(req , res)=>{
     const IdData = data.find((data)=> data.id === id);
 
     if(!IdData){
-        console.log(`your ${IdData} user not found`)
+
+          const error =   new Error(`the data with the user was not found`)
+         error.status = 400;
+        return next(error);
+
     }else
     {
         // console.log("data where id meets = ",IdData)
@@ -138,8 +147,11 @@ router.put('/:id',(req , res)=>{
 
 
     if(!IdData){
-        console.log()
-        res.status(404).json({message: `your ${IdData} user not found`})
+
+        const error =   new Error(`the user was not found`)
+        error.status = 400;
+        return next(error);
+
     }else
     {
 
@@ -182,7 +194,9 @@ router.delete('/:id', (req , res) => {
 
     if(!IdData){
 
-        res.status(204).json({message: "user not found"})
+        const error =   new Error(`the user was not found`)
+        error.status = 400;
+        return next(error);
 
     }else
     {
