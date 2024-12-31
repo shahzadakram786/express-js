@@ -20,7 +20,8 @@ let data = [
 
 
 
-router.get('/', (req, res)=>{
+
+router.get('/',(req, res)=>{
     // console.log(req.query);
     const limit = parseInt(req.query.limit);
 

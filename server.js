@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import data from './routes/data.js'
+import logger from './middleware/logger.js';
 const port = process.env.PORT || 8080;
 const app = express();
 
@@ -9,8 +10,16 @@ const app = express();
 app.use(express.json())
 
 
+//logger middleware
+app.use(logger)
+
+
+
 // Routes
 app.use('/api/post' , data)
+
+
+
 
 
 //setup static folder
