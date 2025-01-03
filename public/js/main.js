@@ -25,9 +25,11 @@ async function showPosts() {
     
         data.forEach(data => {
             const dataEl = document.createElement('div');
-            dataEl.textContent = data.name;
+            dataEl.textContent = data.name && data.id;
             output.appendChild(dataEl)
         });
+
+        console.log('asdfadfa')
     }
     catch(error){
 
@@ -45,14 +47,17 @@ async function addData(e) {
     const formData = new FormData(this)
     const title = formData.get('title');
 
+
     try{
-        const res = await fetch('http://localhost/api/post' , {
+        const res = await fetch('http://localhost:8000/api/post' , {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
                 body:JSON.stringify({title})
         })
+
+        console.log('inside try  ......')
 
         if(!res.ok){
             throw new Error("Failed to add Post")
@@ -70,11 +75,13 @@ async function addData(e) {
 
     }
     catch(error){
-            console.error('Error adding post')
+            console.error('Error adding post' , title)
+            console.log('inside cath error .......')
+            console.log(res)
     }
 }
 
 button.addEventListener('click', showPosts)
-form.addEventListener('click', addData)
+form.addEventListener('submit', addData)
 
 
