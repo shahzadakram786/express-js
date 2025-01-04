@@ -25,11 +25,11 @@ async function showPosts() {
     
         data.forEach(data => {
             const dataEl = document.createElement('div');
-            dataEl.textContent = data.name && data.id;
+            dataEl.textContent = `${data.id} ${data.name}`;
             output.appendChild(dataEl)
         });
 
-        console.log('asdfadfa')
+        console.log('Successfully added')
     }
     catch(error){
 
